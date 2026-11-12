@@ -1,0 +1,137 @@
+/* MorphButton, and the shared .ix-btn base other recipes reuse */
+
+@layer recipes {
+  .ix-btn {
+    --btn-face: var(--ix-ink);
+    --btn-edge: var(--ix-ink);
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: var(--ix-h-regular);
+    min-width: var(--ix-target);
+    padding: 0 16px;
+    /* At rest the button paints its own face and edge, so contrast checkers and
+       forced-colours modes see a real background. */
+    border: 1px solid var(--btn-edge);
+    border-radius: var(--ix-r-s);
+    background: var(--btn-face);
+    color: var(--ix-on-ink);
+    font: inherit;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition:
+      transform var(--ix-dur-micro) var(--ix-ease-out),
+      background-color var(--ix-dur-micro) var(--ix-ease-out);
+  }
+  .ix-btn--compact {
+    min-height: var(--ix-h-compact);
+    padding: 0 12px;
+  }
+  .ix-btn:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .ix-btn:focus-visible {
+    outline: 2px solid var(--ix-accent);
+    outline-offset: 2px;
+  }
+  .ix-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  /* The morph layer: the same face and edge, shown only while the width changes.
+     It is the only thing that scales; the box itself takes its new size at once. */
+  .ix-btn__bg {
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border: 1px solid var(--btn-edge);
+    border-radius: inherit;
+    background: var(--btn-face);
+    opacity: 0;
+    transform-origin: right center;
+  }
+  .ix-btn.is-morphing {
+    border-color: transparent;
+    background: transparent;
+    transition: transform var(--ix-dur-micro) var(--ix-ease-out);
+  }
+  .ix-btn.is-morphing .ix-btn__bg {
+    opacity: 1;
+  }
+  .ix-btn.is-handoff {
+    transition: none;
+  }
+  .ix-btn--anchor-start .ix-btn__bg {
+    transform-origin: left center;
+  }
+  .ix-btn--anchor-center .ix-btn__bg {
+    transform-origin: center;
+  }
+  .ix-btn__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ix-btn__label svg {
+    width: 16px;
+    height: 16px;
+    flex: none;
+  }
+
+  .ix-btn--secondary {
+    --btn-face: var(--ix-surface);
+    --btn-edge: var(--ix-line-strong);
+    color: var(--ix-ink);
+  }
+  .ix-btn--danger {
+    --btn-face: transparent;
+    --btn-edge: var(--ix-danger);
+    color: var(--ix-danger);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .ix-btn--primary:hover:not(:disabled) {
+      --btn-face: color-mix(in oklch, var(--ix-ink) 86%, var(--ix-surface));
+    }
+    .ix-btn--secondary:hover:not(:disabled) {
+      --btn-face: var(--ix-sunk);
+    }
+    .ix-btn--danger:hover:not(:disabled) {
+      --btn-face: var(--ix-danger-soft);
+    }
+  }
+
+  .ix-spin {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    animation: ix-spin 700ms linear infinite;
+  }
+  @keyframes ix-spin {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ix-btn {
+      transition: background-color var(--ix-dur-micro) var(--ix-ease-out);
+    }
+    .ix-btn:active:not(:disabled) {
+      transform: none;
+    }
+    .ix-spin {
+      animation: none;
+      border-right-color: currentColor;
+      opacity: 0.6;
+    }
+  }
+}

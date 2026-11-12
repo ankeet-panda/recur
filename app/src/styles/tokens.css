@@ -1,0 +1,207 @@
+/* Recur tokens. Light on bare :root; dark under the system setting (unless light is chosen) and under data-theme=dark. */
+
+:root {
+  /* Ground and surfaces: porcelain, warm-neutral, low chroma */
+  --bg: oklch(0.972 0.005 80);
+  --surface: oklch(0.996 0.002 80); /* cards and controls; text-2/text-3 legible on it */
+  --surface-2: oklch(0.955 0.006 80);
+  --surface-3: oklch(0.93 0.007 80); /* pressed chips and segments, avatar */
+  --line: oklch(0.9 0.006 80);
+  --line-strong: oklch(0.62 0.01 260); /* control edges, 3:1 on surface and bg */
+
+  /* Ink */
+  --text: oklch(0.22 0.012 260);
+  --text-2: oklch(0.44 0.012 260); /* secondary text, 4.5:1 on bg/surface/surface-2 */
+  --text-3: oklch(0.5 0.01 260);
+
+  /* The dial object: midnight ink, the same in both themes */
+  --dial: oklch(0.255 0.035 258);
+  --dial-2: oklch(0.3 0.04 255); /* lit side of the dial gradient */
+  --dial-line: oklch(0.4 0.035 258);
+  --dial-text: oklch(0.96 0.006 80); /* figures on the dial */
+  --dial-text-2: oklch(0.8 0.015 250);
+  --dial-track: oklch(0.36 0.03 258); /* the dial track ring */
+
+  /* Brass: today and the coming week */
+  --brass: oklch(0.82 0.105 80);
+  --brass-ink: oklch(0.5 0.095 70); /* "soon" text, 4.5:1 on surface */
+  --brass-soft: oklch(0.95 0.035 85);
+
+  /* Meaning */
+  --saved: oklch(0.5 0.11 158);
+  --saved-soft: oklch(0.95 0.035 158); /* reserved saved tint */
+  --saved-on-dial: oklch(0.82 0.12 158);
+  --rise: oklch(0.52 0.16 28); /* price rise text and hatch, 4.5:1 on surface; hold-to-cancel */
+  --rise-soft: oklch(0.955 0.03 28);
+
+  /* Categories: ink for glyphs on light, -dial for marks on the dial, -soft for tinted circles */
+  --cat-streaming: oklch(0.56 0.14 32);
+  --cat-streaming-dial: oklch(0.76 0.13 32); /* streaming marks and glyphs on the dial, 3:1 on dial */
+  --cat-streaming-soft: oklch(0.95 0.03 32);
+  --cat-music: oklch(0.52 0.09 195); /* music glyphs and hatch, 3:1 on its soft tint and surface */
+  --cat-music-dial: oklch(0.8 0.1 195);
+  --cat-music-soft: oklch(0.95 0.025 195); /* music tinted icon circle */
+  --cat-software: oklch(0.52 0.13 258);
+  --cat-software-dial: oklch(0.76 0.11 258); /* software marks and glyphs on the dial, 3:1 on dial */
+  --cat-software-soft: oklch(0.95 0.025 258);
+  --cat-fitness: oklch(0.54 0.15 350); /* fitness glyphs and hatch, 3:1 on its soft tint and surface */
+  --cat-fitness-dial: oklch(0.78 0.12 350);
+  --cat-fitness-soft: oklch(0.955 0.025 350); /* fitness tinted icon circle */
+  --cat-reading: oklch(0.52 0.1 125);
+  --cat-reading-dial: oklch(0.8 0.11 125); /* reading marks and glyphs on the dial, 3:1 on dial */
+  --cat-reading-soft: oklch(0.95 0.03 125); /* reading tinted icon circle */
+  --cat-streaming-head: oklch(0.82 0.12 55); /* head of a streaming mark on the dial: hue turned 23 degrees */
+  --cat-music-head: oklch(0.86 0.1 172); /* head of a music mark */
+  --cat-software-head: oklch(0.82 0.1 232); /* head of a software mark */
+  --cat-fitness-head: oklch(0.82 0.11 14); /* head of a fitness mark */
+  --cat-reading-head: oklch(0.88 0.12 100); /* head of a reading mark */
+  --dial-edge: transparent; /* light theme: the dial lifts by its shadow, no edge */
+
+  --primary: var(--text); /* primary button face, switch on */
+  --primary-hover: oklch(0.32 0.014 260);
+  --on-primary: oklch(0.98 0.004 80); /* text on primary */
+  --focus: oklch(0.5 0.13 258);
+
+  /* Type */
+  --font-ui: 'Hanken Grotesk', ui-sans-serif, 'Segoe UI', sans-serif;
+  --font-display: 'Newsreader', ui-serif, Georgia, serif; /* figures and concept headlines */
+  --t-12: 0.75rem;
+  --t-13: 0.8125rem; /* type scale step */
+  --t-14: 0.875rem;
+  --t-16: 1rem; /* type scale step */
+  --t-18: 1.125rem;
+  --t-22: 1.375rem; /* type scale step */
+  --t-28: 1.75rem;
+  --t-40: 2.5rem; /* type scale step */
+  --t-56: 3.5rem;
+  --t-72: 4.5rem; /* type scale step */
+
+  /* Space: 4 px base */
+  --s-1: 4px;
+  --s-2: 8px; /* spacing step, 4 px base */
+  --s-3: 12px;
+  --s-4: 16px; /* spacing step, 4 px base */
+  --s-5: 20px;
+  --s-6: 24px; /* spacing step, 4 px base */
+  --s-8: 32px;
+  --s-10: 40px; /* spacing step, 4 px base */
+  --s-12: 48px;
+  --s-16: 64px; /* spacing step, 4 px base */
+  --s-24: 96px;
+
+  /* Radius ladder */
+  --r-sm: 8px;
+  --r-md: 12px; /* radius ladder */
+  --r-lg: 20px;
+  --r-xl: 28px; /* radius ladder */
+  --r-pill: 999px;
+
+  /* Depth: one neutral resting shadow, used by the dial object */
+  --shadow-dial: 0 1px 2px oklch(0.2 0.02 258 / 0.12), 0 18px 40px -16px oklch(0.2 0.03 258 / 0.35);
+  --shadow-pop: 0 2px 4px oklch(0.2 0.02 258 / 0.1), 0 12px 28px -8px oklch(0.2 0.02 258 / 0.22); /* the dial object and popovers only */
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* motion */
+  --dur-micro: 120ms;
+  --dur-short: 200ms; /* motion */
+  --dur-long: 420ms;
+
+  /* Recipes paint from these */
+  --ix-ground: var(--bg);
+  --ix-surface: var(--surface); /* recipe token mapped to Recur */
+  --ix-sunk: var(--surface-2);
+  --ix-ink: var(--text); /* recipe token mapped to Recur */
+  --ix-muted: var(--text-2);
+  --ix-line: var(--line); /* recipe token mapped to Recur */
+  --ix-line-strong: var(--line-strong);
+  --ix-accent: var(--focus); /* recipe token mapped to Recur */
+  --ix-on-ink: var(--on-primary);
+  --ix-danger: var(--rise); /* recipe token mapped to Recur */
+  --ix-danger-soft: var(--rise-soft);
+  --ix-ok: var(--saved); /* recipe token mapped to Recur */
+  --ix-r-s: var(--r-pill);
+  --ix-r-m: var(--r-md); /* recipe token mapped to Recur */
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: oklch(0.175 0.008 260); /* page ground */
+    --surface: oklch(0.212 0.01 260);
+    --surface-2: oklch(0.245 0.011 260); /* hover, open row, sunk areas */
+    --surface-3: oklch(0.28 0.012 260);
+    --line: oklch(0.3 0.012 260); /* hairlines between rows (not a control edge) */
+    --line-strong: oklch(0.56 0.014 260);
+    --text: oklch(0.95 0.005 80); /* body and headings, on bg/surface/surface-2/3 */
+    --text-2: oklch(0.78 0.01 260);
+    --text-3: oklch(0.72 0.01 260); /* meta text, 4.5:1 on bg and surface */
+    --dial: oklch(0.29 0.045 258);
+  --dial-edge: oklch(1 0 0 / 0.09); /* dark: a hairline highlight lifts the dial off a near-black page */
+    --dial-2: oklch(0.35 0.05 255); /* lit side of the dial gradient */
+    --dial-line: oklch(0.42 0.04 258);
+    --brass-ink: oklch(0.82 0.1 80); /* "soon" text, 4.5:1 on surface */
+    --brass-soft: oklch(0.3 0.04 80);
+    --saved: oklch(0.78 0.12 158); /* money saved text, 4.5:1 on surface */
+    --saved-soft: oklch(0.28 0.04 158);
+    --rise: oklch(0.74 0.14 28); /* price rise text and hatch, 4.5:1 on surface; hold-to-cancel */
+    --rise-soft: oklch(0.28 0.05 28);
+    --cat-streaming: oklch(0.76 0.13 32); /* streaming glyphs and hatch, 3:1 on its soft tint and surface */
+    --cat-streaming-soft: oklch(0.29 0.045 32);
+    --cat-music: oklch(0.8 0.1 195); /* music glyphs and hatch, 3:1 on its soft tint and surface */
+    --cat-music-soft: oklch(0.29 0.035 195);
+    --cat-software: oklch(0.78 0.1 258); /* software glyphs and hatch, 3:1 on its soft tint and surface */
+    --cat-software-soft: oklch(0.29 0.04 258);
+    --cat-fitness: oklch(0.78 0.12 350); /* fitness glyphs and hatch, 3:1 on its soft tint and surface */
+    --cat-fitness-soft: oklch(0.29 0.045 350);
+    --cat-reading: oklch(0.8 0.11 125); /* reading glyphs and hatch, 3:1 on its soft tint and surface */
+    --cat-reading-soft: oklch(0.29 0.04 125);
+    --primary: oklch(0.95 0.005 80); /* primary button face, switch on */
+    --primary-hover: oklch(0.86 0.006 80);
+    --on-primary: oklch(0.2 0.01 260); /* text on primary */
+    --focus: oklch(0.78 0.11 258);
+    --shadow-dial: 0 1px 2px oklch(0 0 0 / 0.4), 0 18px 40px -16px oklch(0 0 0 / 0.6); /* the dial object and popovers only */
+    --shadow-pop: 0 2px 4px oklch(0 0 0 / 0.4), 0 12px 28px -8px oklch(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: oklch(0.175 0.008 260); /* page ground */
+  --surface: oklch(0.212 0.01 260);
+  --surface-2: oklch(0.245 0.011 260); /* hover, open row, sunk areas */
+  --surface-3: oklch(0.28 0.012 260);
+  --line: oklch(0.3 0.012 260); /* hairlines between rows (not a control edge) */
+  --line-strong: oklch(0.56 0.014 260);
+  --text: oklch(0.95 0.005 80); /* body and headings, on bg/surface/surface-2/3 */
+  --text-2: oklch(0.78 0.01 260);
+  --text-3: oklch(0.72 0.01 260); /* meta text, 4.5:1 on bg and surface */
+  --dial: oklch(0.29 0.045 258);
+  --dial-edge: oklch(1 0 0 / 0.09); /* dark: a hairline highlight lifts the dial off a near-black page */
+  --dial-2: oklch(0.35 0.05 255); /* lit side of the dial gradient */
+  --dial-line: oklch(0.42 0.04 258);
+  --brass-ink: oklch(0.82 0.1 80); /* "soon" text, 4.5:1 on surface */
+  --brass-soft: oklch(0.3 0.04 80);
+  --saved: oklch(0.78 0.12 158); /* money saved text, 4.5:1 on surface */
+  --saved-soft: oklch(0.28 0.04 158);
+  --rise: oklch(0.74 0.14 28); /* price rise text and hatch, 4.5:1 on surface; hold-to-cancel */
+  --rise-soft: oklch(0.28 0.05 28);
+  --cat-streaming: oklch(0.76 0.13 32); /* streaming glyphs and hatch, 3:1 on its soft tint and surface */
+  --cat-streaming-soft: oklch(0.29 0.045 32);
+  --cat-music: oklch(0.8 0.1 195); /* music glyphs and hatch, 3:1 on its soft tint and surface */
+  --cat-music-soft: oklch(0.29 0.035 195);
+  --cat-software: oklch(0.78 0.1 258); /* software glyphs and hatch, 3:1 on its soft tint and surface */
+  --cat-software-soft: oklch(0.29 0.04 258);
+  --cat-fitness: oklch(0.78 0.12 350); /* fitness glyphs and hatch, 3:1 on its soft tint and surface */
+  --cat-fitness-soft: oklch(0.29 0.045 350);
+  --cat-reading: oklch(0.8 0.11 125); /* reading glyphs and hatch, 3:1 on its soft tint and surface */
+  --cat-reading-soft: oklch(0.29 0.04 125);
+  --primary: oklch(0.95 0.005 80); /* primary button face, switch on */
+  --primary-hover: oklch(0.86 0.006 80);
+  --on-primary: oklch(0.2 0.01 260); /* text on primary */
+  --focus: oklch(0.78 0.11 258);
+  --shadow-dial: 0 1px 2px oklch(0 0 0 / 0.4), 0 18px 40px -16px oklch(0 0 0 / 0.6); /* the dial object and popovers only */
+  --shadow-pop: 0 2px 4px oklch(0 0 0 / 0.4), 0 12px 28px -8px oklch(0 0 0 / 0.6);
+  color-scheme: dark;
+}

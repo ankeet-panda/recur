@@ -1,0 +1,110 @@
+/* The demo page and its stage. Stage styles are nested under .rd. */
+.demo-page {
+  max-width: 1136px;
+  margin: 0 auto;
+  padding: var(--s-12) var(--s-8) var(--s-16);
+  display: grid;
+  gap: var(--s-10);
+}
+.demo-page__copy {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--s-8);
+  align-items: end;
+}
+.demo-page__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.4rem + 2.6vw, 3.75rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.demo-page__side { display: grid; gap: var(--s-5); justify-items: start; }
+.demo-page__lede { color: var(--text-2); font-size: var(--t-16); line-height: 1.55; max-width: 34em; }
+
+.rd-figure { display: grid; gap: var(--s-3); }
+.rd-pending { aspect-ratio: 1040 / 540; }
+.rd-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
+.rd-note { color: var(--text-2); font-size: var(--t-14); }
+.rd-beats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); padding: 0; margin: 0; list-style: none; }
+.rd-beats li { display: grid; gap: var(--s-1); padding-top: var(--s-3); border-top: 2px solid var(--line); color: var(--text-2); transition: border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out); }
+.rd-beats li[aria-current='step'] { border-top-color: var(--brass); color: var(--text); }
+.rd-beats__n { font-family: var(--font-display); font-size: var(--t-22); line-height: 1; }
+.rd-beats__t { font-size: var(--t-16); font-weight: 600; color: var(--text); }
+.rd-beats__d { font-size: var(--t-14); text-wrap: pretty; }
+@media (max-width: 760px) { .rd-beats { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); } }
+
+/* ---------- Inside the stage ---------- */
+.rd { overflow: hidden; }
+.rd .ss-stage { overflow: hidden; font-family: var(--font-ui); color: var(--text); }
+/* The kit reverts host elements inside a stage; the product's own resets are restated */
+.rd :is(ul, dl, dd, dt, p, h2, li) { margin: 0; padding: 0; list-style: none; }
+.rd .card__title { font-size: var(--t-18); font-weight: 600; }
+.rd .rd-window { position: absolute; left: 56px; top: 40px; width: 928px; height: 640px; }
+/* Pinned bottom bleed: the window runs off the foot, which fades out over filler only */
+.rd .ss-stage { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 56px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 56px), transparent); }
+.rd .rd-window .ss-window__body { background: var(--surface-2); }
+.rd .rd-body {
+  display: grid;
+  grid-template-columns: 520px 340px;
+  gap: var(--s-5);
+  align-items: start;
+  padding: var(--s-6);
+}
+.rd .dial-card { padding: var(--s-5) var(--s-6) var(--s-5) var(--s-5); gap: var(--s-5); }
+.rd .dial-card { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.rd .dial-card__figs { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
+.rd .dial-card__figs dd { font-size: var(--t-28); }
+
+.rd .rd-side { display: block; width: 100%; }
+.rd .rd-side > * { width: 100%; }
+
+.rd .rd-review { display: grid; gap: var(--s-4); }
+.rd .rd-review__head { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: var(--s-3); align-items: center; }
+.rd .rd-review__name { display: grid; }
+.rd .rd-review__price { font-size: var(--t-16); font-weight: 600; }
+.rd .rd-review__line { font-size: var(--t-14); color: var(--text-2); }
+.rd .rd-review__act { display: grid; gap: var(--s-3); }
+.rd .rd-slot { display: grid; }
+.rd .rd-slot > * { grid-area: 1 / 1; transition: opacity 200ms var(--ease-out); }
+.rd .rd-slot[data-show='hold'] .rd-undo,
+.rd .rd-slot[data-show='undo'] .rd-hold { opacity: 0; }
+.rd .ix-btn { font-family: var(--font-ui); font-size: var(--t-14); }
+.rd .rd-hold { justify-self: start; height: 40px; padding: 0 var(--s-5); }
+.rd .rd-hold .ix-hold__fill { transform: translateX(-100%); }
+.rd .rd-hold .ix-hold__fill-inner { transform: translateX(100%); }
+/* lint-allow: linear-easing the hold fill is a progress bar for a 1.2 s press, linear like the recipe's own sweep */
+.rd .rd-hold[data-held] :is(.ix-hold__fill, .ix-hold__fill-inner) { transform: translateX(0); transition: transform 1200ms linear; }
+.rd .rd-undo { font-size: var(--t-14); }
+/* lint-allow: linear-easing a countdown drains at constant speed */
+.rd .rd-slot[data-show='undo'] .rd-undo__bar { animation: rd-drain 8s linear both; } /* lint-allow: slow-motion the undo bar is an 8 s countdown, a progress bar, not interface motion */
+@keyframes rd-drain { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+
+/* Compact: the phone design, a tighter crop around the story */
+.rd .rd-compact { position: absolute; inset: 16px 16px auto 16px; display: grid; gap: var(--s-3); }
+.rd .rd-compact__top {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: var(--s-4);
+  align-items: center;
+  padding: var(--s-3) var(--s-4) var(--s-3) var(--s-3);
+  border-radius: var(--r-lg);
+  background: radial-gradient(120% 90% at 20% 0%, var(--dial-2), var(--dial) 70%);
+  color: var(--dial-text);
+}
+.rd .rd-compact__dial .dial__labels { display: none; }
+.rd .rd-compact__figs { display: grid; gap: var(--s-3); }
+.rd .rd-compact__figs dt { color: var(--dial-text-2); font-size: var(--t-12); }
+.rd .rd-compact__figs dd { font-family: var(--font-display); font-size: var(--t-28); line-height: 1.1; white-space: nowrap; }
+.rd .rd-compact__saving { display: none; }
+.rd .rd-compact__saving[data-on] { display: block; animation: rise-in var(--dur-long) var(--ease-out) both; }
+.rd .rd-compact__saving dd { color: var(--saved-on-dial); }
+.rd .rd-compact .card { padding: var(--s-4); }
+.rd .rd-compact .insight__actions .btn--ghost { display: none; }
+
+@media (max-width: 760px) {
+  .demo-page { padding: var(--s-8) var(--s-4) var(--s-12); gap: var(--s-6); }
+  .demo-page__copy { grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
+}

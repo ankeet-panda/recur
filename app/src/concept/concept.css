@@ -1,0 +1,126 @@
+/* The concept page: product first, then the problem, the three moments and the design decisions. */
+.cx { max-width: 1280px; margin: 0 auto; padding: 0 var(--s-8); }
+
+.cx-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-12);
+  align-items: center;
+  padding: var(--s-16) 0 var(--s-24);
+}
+.cx-hero__copy { display: grid; gap: var(--s-6); justify-items: start; }
+.cx-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 1.5rem + 3.2vw, 4.25rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+.cx-lede { color: var(--text-2); font-size: var(--t-18); line-height: 1.55; max-width: 32em; }
+.cx-actions { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+.cx-actions .btn { height: 48px; padding: 0 var(--s-6); font-size: var(--t-16); }
+.cx-hero__product { display: grid; gap: var(--s-3); min-width: 0; }
+.cx-caption { color: var(--text-3); font-size: var(--t-14); }
+
+.cx-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 1.4rem + 1.6vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+.cx-h3 { font-size: var(--t-22); font-weight: 600; line-height: 1.3; }
+
+.cx-why {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-12);
+  padding: var(--s-24) 0;
+  border-top: 1px solid var(--line);
+}
+.cx-why__points { display: grid; gap: var(--s-5); }
+.cx-why__points p { color: var(--text-2); font-size: var(--t-18); line-height: 1.55; }
+.cx-why__points strong { color: var(--text); font-weight: 600; }
+
+.cx-moments { padding: var(--s-24) 0 var(--s-16); border-top: 1px solid var(--line); display: grid; gap: var(--s-8); }
+.cx-moment {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--s-16);
+  align-items: center;
+  padding: var(--s-8) 0;
+}
+.cx-moment--flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.cx-moment--flip .cx-moment__text { order: 2; }
+.cx-moment__text { display: grid; gap: var(--s-4); align-content: start; }
+.cx-moment__text p { color: var(--text-2); font-size: var(--t-16); line-height: 1.6; max-width: 36em; }
+.cx-moment__visual { min-width: 0; }
+.cx-keys { display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); padding-top: var(--s-2); }
+.cx-keys li { display: inline-flex; align-items: center; gap: var(--s-2); font-size: var(--t-14); font-weight: 500; }
+.cx-keys svg { color: var(--c); }
+.cx-dial-solo {
+  justify-self: center;
+  width: 100%;
+  max-width: 440px;
+  padding: var(--s-6);
+  border-radius: var(--r-xl);
+  background: radial-gradient(120% 90% at 20% 0%, var(--dial-2), var(--dial) 70%);
+  box-shadow: var(--shadow-dial);
+}
+
+.cx-try { display: grid; gap: var(--s-5); max-width: 520px; }
+.cx-try__row { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: var(--s-3); align-items: center; }
+.cx-try__name { display: grid; }
+.cx-try__act { display: grid; gap: var(--s-3); justify-items: start; min-height: 76px; }
+.cx-try__act .ix-btn { height: 44px; padding: 0 var(--s-5); font-size: var(--t-16); }
+.cx-try__act .ix-undo { width: 100%; font-size: var(--t-14); }
+.cx-try__done { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-3); font-size: var(--t-16); }
+.cx-saved { color: var(--saved); font-weight: 600; }
+
+.cx-design { padding: var(--s-24) 0; border-top: 1px solid var(--line); display: grid; gap: var(--s-12); }
+.cx-design__intro { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-12); }
+.cx-design__intro p { color: var(--text-2); font-size: var(--t-18); line-height: 1.55; }
+.cx-design__grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-6); }
+.cx-block {
+  display: grid;
+  gap: var(--s-5);
+  align-content: start;
+  padding: var(--s-8);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+.cx-block--wide { grid-column: 1 / -1; }
+.cx-block p { color: var(--text-2); font-size: var(--t-16); line-height: 1.6; max-width: 68ch; }
+.cx-swatches { display: grid; gap: var(--s-4); }
+.cx-swatches li { display: grid; grid-template-columns: 44px 96px minmax(0, 1fr); gap: var(--s-4); align-items: center; }
+.cx-swatch { width: 44px; height: 44px; border-radius: var(--r-md); box-shadow: inset 0 0 0 1px var(--line); }
+.cx-swatch__name { font-size: var(--t-16); font-weight: 600; }
+.cx-swatch__role { color: var(--text-2); font-size: var(--t-14); text-wrap: pretty; }
+.cx-small { color: var(--text-3); font-size: var(--t-14); }
+.cx-type { display: grid; gap: var(--s-2); padding-bottom: var(--s-4); border-bottom: 1px solid var(--line); }
+.cx-type:last-child { border-bottom: 0; padding-bottom: 0; }
+.cx-type__serif { font-family: var(--font-display); font-size: var(--t-72); line-height: 1; letter-spacing: -0.02em; }
+.cx-type__sans { font-size: var(--t-28); font-weight: 600; line-height: 1.2; }
+
+.cx-dial-solo__big { font-family: var(--font-display); font-size: 10cqi; line-height: 1.1; color: var(--dial-text); }
+.cx-close { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s-6); padding: var(--s-16) 0; border-top: 1px solid var(--line); }
+.cx-foot { padding: var(--s-8) 0 var(--s-16); border-top: 1px solid var(--line); color: var(--text-3); font-size: var(--t-13); }
+
+@media (max-width: 1040px) {
+  .cx-hero, .cx-why, .cx-moment, .cx-moment--flip, .cx-design__intro, .cx-design__grid { grid-template-columns: minmax(0, 1fr); }
+  .cx-moment--flip .cx-moment__text { order: 0; }
+  .cx-hero { padding: var(--s-10) 0 var(--s-16); gap: var(--s-10); }
+  .cx-moment { gap: var(--s-8); }
+}
+@media (max-width: 760px) {
+  .cx { padding: 0 var(--s-4); }
+  .cx-why, .cx-moments, .cx-design { padding: var(--s-16) 0; }
+  .cx-dial-solo { padding: var(--s-4); }
+  .cx-block { padding: var(--s-5); }
+  .cx-swatches li { grid-template-columns: 40px minmax(0, 1fr); }
+  .cx-swatches .cx-swatch { grid-row: span 2; width: 40px; height: 40px; }
+  .cx-type__serif { font-size: var(--t-56); }
+}

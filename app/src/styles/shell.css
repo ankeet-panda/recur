@@ -1,0 +1,31 @@
+/* The view switcher strip above the three views. Quiet: it is not part of the product. */
+.shell {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-4);
+  padding: var(--s-2) var(--s-8);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  font-size: var(--t-13);
+}
+.shell__name { font-weight: 600; }
+.shell__what { margin-left: var(--s-2); color: var(--text-2); font-weight: 400; }
+.shell__views { display: flex; flex-wrap: wrap; gap: 2px; }
+.shell__views a {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--s-3);
+  border-radius: var(--r-pill);
+  color: var(--text-2);
+  font-weight: 500;
+  text-decoration: none;
+}
+.shell__views a[aria-current='page'] { background: var(--surface-3); color: var(--text); }
+@media (hover: hover) { .shell__views a:not([aria-current='page']):hover { color: var(--text); } }
+@media (max-width: 760px) { .shell { padding: var(--s-2) var(--s-4); } }

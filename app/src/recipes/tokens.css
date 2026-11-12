@@ -1,0 +1,87 @@
+/* Interaction recipes: shared tokens.
+   Every recipe paints from these. A project maps its own tokens onto them once
+   (for example `--ix-accent: var(--color-accent)`), unlayered, and wins over these defaults. */
+
+@layer recipes {
+  :root {
+    --ix-ground: oklch(0.972 0.005 225);
+    --ix-surface: oklch(0.995 0.002 225);
+    --ix-sunk: oklch(0.955 0.006 225);
+    --ix-ink: oklch(0.23 0.02 235);
+    --ix-muted: oklch(0.47 0.02 232);
+    --ix-line: oklch(0.89 0.009 228);
+    --ix-line-strong: oklch(0.8 0.012 228);
+    --ix-accent: oklch(0.47 0.1 205);
+    --ix-accent-soft: oklch(0.94 0.035 205);
+    --ix-on-ink: oklch(0.985 0.003 225);
+    --ix-danger: oklch(0.5 0.17 28);
+    --ix-danger-soft: oklch(0.955 0.03 28);
+    --ix-ok: oklch(0.5 0.12 155);
+    --ix-shadow: oklch(0.2 0.02 235);
+    /* Physical objects (ticket, stamp, receipt) stay paper in both themes, with their own ink */
+    --ix-paper: oklch(0.975 0.008 85);
+    --ix-paper-ink: oklch(0.26 0.015 60);
+    --ix-paper-muted: oklch(0.45 0.015 60);
+    --ix-paper-line: oklch(0.78 0.012 60);
+
+    /* One elevation set. --ix-elev-* for box-shadow; --ix-drop-* for masked shapes, as filters */
+    --ix-elev-1: 0 1px 1px color-mix(in oklch, var(--ix-shadow) 14%, transparent), 0 4px 10px color-mix(in oklch, var(--ix-shadow) 8%, transparent);
+    --ix-elev-2: 0 2px 2px color-mix(in oklch, var(--ix-shadow) 14%, transparent), 0 10px 20px color-mix(in oklch, var(--ix-shadow) 12%, transparent);
+    --ix-elev-3: 0 16px 40px -12px color-mix(in oklch, var(--ix-shadow) 30%, transparent);
+    --ix-drop-1: drop-shadow(0 1px 1px color-mix(in oklch, var(--ix-shadow) 14%, transparent)) drop-shadow(0 4px 10px color-mix(in oklch, var(--ix-shadow) 8%, transparent));
+    --ix-drop-2: drop-shadow(0 2px 2px color-mix(in oklch, var(--ix-shadow) 14%, transparent)) drop-shadow(0 10px 20px color-mix(in oklch, var(--ix-shadow) 12%, transparent));
+
+    --ix-r-s: 6px;
+    --ix-r-m: 10px;
+    --ix-r-l: 14px;
+
+    --ix-dur-micro: 120ms;
+    --ix-dur-short: 220ms;
+    --ix-dur-long: 420ms;
+    --ix-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ix-ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ix-ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+    --ix-ease-exit: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    /* Control heights: compact 32 on a mouse (WCAG 2.5.8 floor is 24), 44 on touch */
+    --ix-h-compact: 32px;
+    --ix-h-regular: 40px;
+    --ix-target: 24px;
+  }
+
+  @media (pointer: coarse) {
+    :root {
+      --ix-h-compact: 44px;
+      --ix-h-regular: 44px;
+      --ix-target: 44px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ix-ground: oklch(0.175 0.012 235);
+      --ix-surface: oklch(0.215 0.013 235);
+      --ix-sunk: oklch(0.19 0.012 235);
+      --ix-ink: oklch(0.94 0.006 225);
+      --ix-muted: oklch(0.73 0.015 228);
+      --ix-line: oklch(0.31 0.014 232);
+      --ix-line-strong: oklch(0.42 0.016 232);
+      --ix-accent: oklch(0.76 0.1 205);
+      --ix-accent-soft: oklch(0.3 0.05 205);
+      --ix-on-ink: oklch(0.18 0.012 235);
+      --ix-danger: oklch(0.72 0.15 28);
+      --ix-danger-soft: oklch(0.28 0.06 28);
+      --ix-ok: oklch(0.75 0.12 155);
+      --ix-shadow: oklch(0.05 0.01 235);
+    }
+  }
+
+  .ix-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
